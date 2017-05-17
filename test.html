@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+</head>
+<body>
+<script type="text/javascript">
+	// function Person(name,age) {
+	// 	// body...
+	// 	this.name = name;
+	// 	this.age =age;
+	// }
+	// function Student(name,age,grade){
+	// 	debugger
+	// 	Person.apply(this,arguments);
+	// 	this.grade = grade;
+	// }
+	// var student = new Student('xiaoming','21','一年级');
+	// console.log('name:' + student.name + '\n' + 'age:' + student.age + '\n' + 'grade:' + student.grade);
+	var func = function() { 
+		alert(func === arguments.callee);
+	}
+	func();
+
+</script>
+	
+</body>
+</html>

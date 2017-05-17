@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>链式调用精简版</title>
+</head>
+<body>
+<script type="text/javascript">
+	function Chain(obj) {
+		return function(){
+			var Self = arguments.callee;
+			// argument代表当前函数的参数数组
+			// arguments.callee表示引用当前正在执行的函数，或者说是调用arguments.callee的函数对象的引用
+			// 它给匿名函数提供了一种自我引用的方式.
+			Self.obj = obj;
+			if(arguments.length == 0){
+				return Self.obj;
+			}
+			Self.obj[arguments[0]].apply(Self.obj, [].slice.call(arguments, 1));
+			//[].slice.call() 将函数的实际参数转换为数组
+			return Self;
+		}
+	}
+	// function Chain(obj){    
+	//     var fn = function(method){    
+	//         if(arguments.length <= 0){    
+	//             return fn;    
+	//         }    
+	//         var args = Array.prototype.slice.call(arguments, 1);//把调用方法的参数截取出来
+	//         obj[method].apply(obj, args); //利用apply()劫持obj对象的方法，继承obj对象的属性   
+	//         return fn;    
+	//     }    
+ //    	return fn;    
+	// }
+	//定义的function/类ClassB
+	function ClassB() {
+		this.prop1 = null;
+		this.prop2 = null;
+		this.prop3 = null;
+	}
+	ClassB.prototype = {
+		method1:function(p1){
+			this.prop1 = p1;
+		},
+		method2:function(p2){
+			this.prop2 = p2;
+		},
+		method3:function(p3){
+			this.prop3 = p3;
+		}
+	}
+
+	var obj = new ClassB;
+	Chain(obj)('method1',5)('method2',6)('method3',7);// obj -> prop1=5,prop2=6,prop3=7 
+	console.log(obj);
+	// var result = Chain(obj)('method1',8)('method2',9)('method3',10)();// result -> prop1=8,prop2=9,prop3=10 
+	// console.log(result);
+
+		// obj
+		// .method1(arg1)
+		// .method2(arg2)
+		// .method3(arg3)
+		// ...
+
+		// Chain(obj)
+		// ('method1',arg1)
+		// ('method2',arg2)
+		// ('method3',arg3)
+		// ...
+		// function fn(x){
+		// 	var sum = x;
+		// 	var temp = function(y){
+		// 		sum += y;
+		// 		return temp;
+		// }
+		// temp.toString = function(){
+		// 	return sum;
+		// }
+		// return temp; 
+		// }
+
+		// console.log(fn(1)(2)(3));
+	// function test(a,b,c,d) { 
+ //      var arg = Array.prototype.slice.call(arguments,1); 
+ //      alert(arg); 
+ //   } 
+ //   test("a","b","c","d"); //b,c,d
+
+</script>
+	
+</body>
+</html>
