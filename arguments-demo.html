@@ -70,16 +70,105 @@
 // test();
 //内部属性 callee
 //arguments对象有一个名为callee的属性，该属性是一个指针，指向拥有这个arguments对象的函数
-function factorial(num){
-	if(num <= 1){
-		return 1;
-	}else {
-		return num * factorial(num-1);
-	}
+// function factorial(num){
+// 	if(num <= 1){
+// 		return 1;
+// 	}else {
+// 		return num * factorial(num-1);
+// 	}
+// }
+// console.log(factorial(5));
+
+// //使用arguments.callee可以消除函数解耦
+// function factorial(num){
+// 	'use strict'
+// 	if (num <= 1) {
+// 		return 1;
+// 	} else {
+// 		return num * arguments.callee(num-1);
+// 	}
+// }
+// console.log(factorial(5));
+// //严格模式下会报错：Uncaught TypeError: 'caller', 'callee', and 'arguments' properties may not be accessed on strict mode functions or the arguments objects for calls to them
+//可以使用具名的函数表达式
+// var factorial = function fu(num){
+// 	if(num <= 1) {
+// 		return 1;
+// 	} else {
+// 		return num*fu(num-1); 
+// 	}
+// };
+// console.log(factorial(5));
+//函数的caller属性保存着调用当前函数的函数的引用，如果是在全局作用域中调用当前函数，它的值是null
+
+// function outer(){
+// 	inner();
+// }
+// function inner() {
+// 	console.log(inner.caller);
+// }
+// outer();
+//严格模式下会报错：arguments-demo.html:114 Uncaught TypeError: 'caller' and 'arguments' are restricted function properties and cannot be accessed in this context.
+// function inner(){
+// 	'use strict'
+// 	console.log(inner.caller);
+// }
+// inner();
+//严格模式下报错：
+// function inner(x){
+// 	'use strict'
+// 	console.log(arguments.caller);
+// }
+// inner(1);
+//函数的重载
+// function addSomeNumber(num) {
+// 	return num + 100;
+// }
+// function addSomeNumber(num) {
+// 	return num + 200;
+// }
+// var result = addSomeNumber(100);
+// console.log(result);
+
+// function doAdd() {
+// 	if(arguments.length == 1){
+// 		alert(arguments[0] + 10);
+// 	} else if(arguments.length == 2) {
+// 		alert(arguments[0] +　arguments[1])
+// 	}
+// }
+// doAdd(10);
+// doAdd(30,20);
+
+// function addTen(num) {
+// 	num += 10;
+// 	return num;
+// }
+
+// var count = 20;
+// var result = addTen(count);
+// console.log(count);
+// console.log(result)
+//引用类型值
+// function setName(obj){
+// 	obj.name = 'text';
+// }
+// var person = new Object();
+// setName(person);
+// console.log(person.name);
+function setName(obj) {
+	obj.name = 'test';
+	console.log(person.name);
+	obj = new Object();
+	obj.name = 'white';
+	console.log(person.name);
 }
-console.log(factorial(5));
-	
+
+var person = new Object();
+setName(person);
+
+
 </script>
 	
 </body>
-</html>
+</html>;
