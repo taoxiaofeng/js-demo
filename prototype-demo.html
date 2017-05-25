@@ -14,17 +14,21 @@
 	function Person(name,height){
 		this.name = name;
 		this.height = height;
-		this.hobby = function() {
-			return 'watching movies';
-		}
+	}
+
+	Person.prototype.hobby = function(){
+		return 'swimming';
 	}
 
 	var boy = new Person('keith',180);
-	var girl = new Person('rescal',150)
+	var girl = new Person('rescal',150);
 
-	console.log(boy.name);
-	console.log(girl.name);
-	console.log(boy.hobby === girl.hobby);
+	boy.hobby = function() {
+		return 'play backetball';
+	}
+	console.log(boy.hobby());	//play backetball
+	console.log(girl.hobby());	//swimming
+	console.log(boy.hobby === girl.hobby); //false
 </script>
 	
 </body>
