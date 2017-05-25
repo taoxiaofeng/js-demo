@@ -15,7 +15,8 @@
 // a.show();
 // window.name = 'xiaoming';
 // function foo() {
-// 	console.log(this.name)
+// 	console.log(this.name); //xiaoming
+// 	console.log(this);//全局对象window
 // }
 // foo();
 // var a = function(){
@@ -46,18 +47,73 @@
 // 	return this.value;
 // }
 // console.log(myObject.getValue());//100
-var myObject = {value:100};
-myObject.getValue = function() {
-	var foo = function() {
-		console.log(this.value);//undefined
-		console.log(this);//输出全局对象Window
-	};
-	foo();
-	return this.value;
-};
-console.log(myObject.getValue());//100
+// var myObject = {value:100};
+// myObject.getValue = function() {
+// 	var foo = function() {
+// 		console.log(this.value);//undefined
+// 		console.log(this);//输出全局对象Window
+// 	};
+// 	foo();
+// 	return this.value;
+// };
+// console.log(myObject.getValue());//100
+
+// var someClass = function() {
+// 	this.value = 100;
+// }
+
+// var myCreate = new someClass();
+// console.log(myCreate.value);
 
 
+// var myObject = {value:100};
+// var foo = function(){
+// 	console.log(this);
+// }
+
+// foo();//Window
+// foo.apply(myObject);//Object {value: 100}
+// foo.call(myObject);//Object {value: 100}
+
+// var newFoo = foo.bind(myObject);
+// newFoo();//Object {value: 100}
+
+// function a() {
+// 	var user = 'admin';
+// 	console.log(this);//Window
+// 	console.log(this.user);//undefined
+// }
+// window.a();
+
+// var a={
+// 	user:'admin',
+// 	fn:function(){
+// 		console.log(this.user)//admin
+// 		console.log(this)//Object {user: "admin", fn: function}  this指向的是a对象
+// 	}
+// }
+// a.fn();
+
+// var a = {
+// 	user:'adimin',
+// 	foo:function(){
+// 		console.log(this.user);//adimin
+// 		console.log(this);//Object {user: "adimin", foo: function}
+// 	}
+// }
+// window.a.foo();
+var a = {
+	b:10,
+	foo:{
+		b:20,
+		show:function(){
+			console.log(this.b);//undefined
+			console.log(this);//Window {stop: function, open: function, alert: function, confirm: function, prompt: function…}
+		}
+	}
+}
+var j = a.foo.show;
+j();
 </script>
 	
 </body>

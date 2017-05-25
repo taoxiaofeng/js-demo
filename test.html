@@ -18,10 +18,48 @@
 	// }
 	// var student = new Student('xiaoming','21','一年级');
 	// console.log('name:' + student.name + '\n' + 'age:' + student.age + '\n' + 'grade:' + student.grade);
-	var func = function() { 
-		alert(func === arguments.callee);
-	}
-	func();
+	// var func = function() { 
+	// 	alert(func === arguments.callee);
+	// }
+	// func();
+	// var myObject = {value:100};
+	// myObject.getValue = function() {
+	// 	debugger
+	// 	var foo = function(){
+	// 		debugger
+	// 		console.log(this);
+	// 		console.log(this.value);
+			
+	// 	}
+	// 	foo();
+	// 	debugger
+	// 	return this.value;
+	// }
+	// console.log(myObject.getValue());//100
+
+
+var myObject = {value:100};
+
+var foo = function(){
+
+	console.log(this);
+
+}
+
+foo();//Window
+
+foo.apply(myObject);//Object {value: 100}
+
+foo.call(myObject);//Object {value: 100}
+
+
+
+var newFoo = foo.bind(myObject);
+
+newFoo();//Object {value: 100}
+
+
+
 
 </script>
 	

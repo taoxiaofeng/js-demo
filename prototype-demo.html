@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>prototype</title>
+</head>
+<body>
+<script type="text/javascript">
+	// function Person(){
+	// 	this.name = 'xiaoming'; 
+	// }
+	// var boy = new Person();
+	// console.log(boy.name);	//xiaoming
+	function Person(name,height){
+		this.name = name;
+		this.height = height;
+		this.hobby = function() {
+			return 'watching movies';
+		}
+	}
+
+	var boy = new Person('keith',180);
+	var girl = new Person('rescal',150)
+
+	console.log(boy.name);
+	console.log(girl.name);
+	console.log(boy.hobby === girl.hobby);
+</script>
+	
+</body>
+</html>
