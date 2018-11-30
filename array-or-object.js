@@ -3,8 +3,8 @@ function print(args) {
     document.write(args);
 }
 
-function weelTemps() {
-    this.dataStore = dataStore;
+function weekTemps() {
+    this.dataStore = [];
     this.add = add;
     this.average = average;
 }
@@ -21,3 +21,21 @@ function average() {
     print('total： ', total, '平均值： ', total / this.dataStore.length)
     return total / this.dataStore.length;
 }
+
+var thisWeek = new weekTemps();
+thisWeek.add(52);
+thisWeek.add(55);
+thisWeek.add(61);
+thisWeek.add(65);
+thisWeek.add(55);
+thisWeek.add(50);
+thisWeek.add(52);
+thisWeek.add(49);
+print(thisWeek.average());
+
+//拼接字符串
+function concat(accumulatedString, item) {
+    return accumulatedString += item;
+}
+var letter = ['a','b','c','d'];
+print(letter.reduce(concat));
