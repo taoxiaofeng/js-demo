@@ -183,11 +183,20 @@ names.append("Danny");
  * 在for 循环的一开始，将列表的当前位置设置为第一个元素。只要currPos 的值小于列表
  * 的长度，就一直循环，每一次循环都调用next() 方法将当前位置向前移动一位。
  */
-for (names.front(); names.currPos() < names.length(); names.next()) {
-    print(names.getElement());
-}
+// for (names.front(); names.currPos() < names.length(); names.next()) {
+//     print(names.getElement());
+// }
 
 
-for (names.end(); names.currPos() >= 0; names.prev()) {
-    print(names.getElement());
-}
+// for (names.end(); names.currPos() >= 0; names.prev()) {
+//     print(names.getElement());
+// }
+
+
+//通过调用函数read(films.txt) 读取了文本文件的内容；
+// 其次，它将读进来的内容按照换行符分成了不同行，然后保存到数组movies 中。
+var fso = new ActiveXObject(Scripting.FileSystemObject);
+
+var movies = fso.OpenTextFile("./films.txt", 1, true);
+
+console.log(movies);
